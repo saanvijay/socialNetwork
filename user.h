@@ -10,6 +10,7 @@ class user {
 	string _name;
 	int _age;
 	int _height;
+	string _gender;
 	vector<string> _hobbies;
 	set<decltype(_userId)> _fList;
 public:
@@ -21,6 +22,7 @@ public:
 		_userId = rhs._userId;
 		_name = rhs._name;
 		_age = rhs._age;
+		_gender = rhs._gender;
 		_height = rhs._height;
 		_hobbies = rhs._hobbies;
 		_fList = rhs._fList;
@@ -30,6 +32,7 @@ public:
 			_userId = rhs._userId;
 			_name = rhs._name;
 			_age = rhs._age;
+			_gender = rhs._gender;
 			_height = rhs._height;
 			_hobbies = rhs._hobbies;
 			_fList = rhs._fList;
@@ -40,11 +43,13 @@ public:
 	user& operator=(user &&) = delete;
 
 	void setUserName(string aname) { _name = aname;}
+	void setUserGender(string agender) { _gender = agender;}
 	void setUserAge (auto nage) { _age = nage; }
 	void setUserHeight(auto nheight) { _height = nheight; }
 	void setUserHobbies(vector<string> &uhobbies) { _hobbies = uhobbies ; }
 
 	string getUserName() { return _name;}
+	string getUserGender() { return _gender;}
 	auto getUserAge () { return _age; }
 	auto getUserHeight() { return _height; }
 	auto getUserHobbies() { return _hobbies; }

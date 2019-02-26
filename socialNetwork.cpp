@@ -17,6 +17,11 @@ void socialNetwork::addUser(string name) {
 	user *auser = new user;
 	auser->setUserName(name);
 
+	string gender;
+	cout << "Enter Gender for " << name << endl;
+	cin >> gender;
+	auser->setUserGender (gender);
+
 	int age;
 	cout << "Enter age for " << name << endl;
 	cin >> age;
@@ -60,6 +65,7 @@ void socialNetwork::printAllUsers() {
 	for (auto &l : uList) {
 		cout << "UserId   : " << l->getUserId()  << endl;
 		cout << "Name     : " << l->getUserName()  << endl;
+		cout << "Gender   : " << l->getUserGender()  << endl;
 		cout << "Age      : " << l->getUserAge() << endl;
 		cout << "Height   : " << l->getUserHeight() << endl;
 		auto uh = l->getUserHobbies();
@@ -106,6 +112,3 @@ set <unsigned long>socialNetwork::getFriendsOfUser(user *fuser)	 {
 void socialNetwork::addFriend(user *ouser, user *fuser) {	
 	ouser->getFriendsList().insert(fuser->getUserId());
 }
-
-
-
