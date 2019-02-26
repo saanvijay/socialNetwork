@@ -1,24 +1,29 @@
 #include "socialNetwork.h"
 #include <algorithm> // std::remove will not work unless you declare algorithm header
 
-class user;
-long long int user::_userId = 0;
+user* socialNetwork::getUser(string name) {
+	for (auto &l : uList) {
+		if (l->getUserName() == name) return l;
+	}
+}
 
-void socialNetwork::addUser(user *auser) {
+void socialNetwork::addUser(string name) {
 
-	string aname;
-	cout << "Enter user name" << endl;
-	cin >> aname;
-	if (aname == "") { cout << "User name can't be empty" << endl; return;}
-	auser->setUserName(aname);
+	if (name == "") {
+		cout << "Application can't create user profile for empty string" << endl;
+		return;
+	}
+
+	user *auser = new user;
+	auser->setUserName(name);
 
 	int age;
-	cout << "Enter user age" << endl;
+	cout << "Enter age for " << name << endl;
 	cin >> age;
 	auser->setUserAge (age);
 
 	int nheight;
-	cout << "Enter user height" << endl;
+	cout << "Enter height for " << name << endl;
 	cin >> nheight;
 	auser->setUserHeight(nheight);
 
@@ -27,10 +32,10 @@ void socialNetwork::addUser(user *auser) {
 	while(1) {
 		string h;
 		char c;
-		cout << "Enter user hobbies" << endl;
+		cout << "Enter hobbies for " << name << endl;
 		cin >> h;
 		nhobbies.push_back(h);
-		cout << "More hobbies (y/n)" << endl;
+		cout << "More hobbies for " << name <<" (y/n)" << endl;
 		cin >> c;
 		if (c == 'n' || c == 'N') break;
 	}
@@ -39,8 +44,8 @@ void socialNetwork::addUser(user *auser) {
 }
 
 
-void socialNetwork::deleteUser(user *auser) {
-	uList.erase(std::remove(uList.begin(), uList.end(), auser), uList.end());
+void socialNetwork::deleteUser(string name) {
+	uList.erase(std::remove(uList.begin(), uList.end(), getUser(name)), uList.end());
 }
 
 void socialNetwork::printAllUsers() {
@@ -67,8 +72,8 @@ void socialNetwork::printAllUsers() {
 	}		
 }
 
-set<long long int>socialNetwork::serchUserByName(string name) {
-	set<long long int> ids;
+set<unsigned long>socialNetwork::serchUserByName(string name) {
+	set<unsigned long> ids;
 	for (auto &l : uList) {
 		if (l->getUserName() == name) { ids.insert(l->getUserId());}
 	}
@@ -76,20 +81,29 @@ set<long long int>socialNetwork::serchUserByName(string name) {
 
 }
 
-set<long long int>socialNetwork::serchUserByAge(unsigned int age) {
-	set<long long int> ids;
+set<unsigned long>socialNetwork::serchUserByAge(unsigned int age) {
+	set<unsigned long> ids;
 	for (auto &l : uList) {
 		if (l->getUserAge() == age) { ids.insert(l->getUserId());}
 	}
 	return ids;
 }
+set<unsigned long>socialNetwork::serchUserByHobbies(set<string> hobbies) {
+	set<unsigned long> ids;
+	for (auto &l : uList) {
+		for(auto &h : l->getUserHobbies()) {
+			for (auto &hv :hobbies)
+				if (hv == h) ids.insert(l->getUserId());
+		}
+	}
+return ids;
+}
 
-set <long long int>socialNetwork::getFriendsOfUser(user *fuser)	 {
+set <unsigned long>socialNetwork::getFriendsOfUser(user *fuser)	 {
 	return fuser->getFriendsList();
 	}
 
-void socialNetwork::addFriend(user *ouser, user *fuser) {
-		
+void socialNetwork::addFriend(user *ouser, user *fuser) {	
 	ouser->getFriendsList().insert(fuser->getUserId());
 }
 

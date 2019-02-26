@@ -7,12 +7,13 @@ class socialNetwork {
 public:
 	socialNetwork() { }
 	~socialNetwork() { }
-	void addUser(user *nUser);
-	void deleteUser(user *oUser);
-	set<long long int>serchUserByName(string name);
-	set<long long int>serchUserByAge(unsigned int age);
-	set<long long int>serchUserByHobbies(set<string> hobbies);
-	set<long long int>getFriendsOfUser(user *fuser);
+	void addUser(string name);
+	void deleteUser(string name);
+	user* getUser(string name);
+	set<unsigned long>serchUserByName(string name);
+	set<unsigned long>serchUserByAge(unsigned int age);
+	set<unsigned long>serchUserByHobbies(set<string> hobbies);
+	set<unsigned long>getFriendsOfUser(user *fuser);
 	void addFriend(user *ouser, user *fuser);
 	void printAllUsers();
 

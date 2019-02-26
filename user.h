@@ -2,19 +2,21 @@
 #include <iostream>
 #include <string>
 #include <set>
-#include <list>
 #include <vector>
 using namespace std;
 
 class user {
-	static long long int _userId;
+	unsigned long _userId = 0;
 	string _name;
 	int _age;
 	int _height;
 	vector<string> _hobbies;
 	set<decltype(_userId)> _fList;
 public:
-	user() { _userId++;}
+	user() { 
+		auto id = [] () { static unsigned long i=0; i++; return i;};
+		_userId = id(); 
+		}
 	user(const user& rhs) {
 		_userId = rhs._userId;
 		_name = rhs._name;
@@ -49,5 +51,3 @@ public:
 	decltype(_userId) getUserId() { return _userId; }
 	set<decltype(_userId)> getFriendsList() { return _fList; }
 };
-
-

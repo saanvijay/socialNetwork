@@ -9,25 +9,25 @@ int main() {
 
 	socialNetwork *s = new socialNetwork;
 
-	user *newUser = new user;
-	s->addUser(newUser);
-
-	user *newUser1 = new user;
-	s->addUser(newUser1);
+	
+	s->addUser("vijay");
+	s->addUser("prakash");
 
 	s->printAllUsers();
 
 	auto nlist = s->serchUserByName("vijay");
-	for (auto &l : nlist) cout <<" user ids name" << l <<endl;
+	for (auto &l : nlist) cout <<"UserId's for Name search : " << l <<endl;
 
 	auto alist = s->serchUserByAge(23);
-	for (auto &l : alist) cout <<" user ids age" << l <<endl;
+	for (auto &l : alist) cout <<"UserId's for Age search : " << l <<endl;
 
+	auto hlist = s->serchUserByHobbies({"swimming"});
+	for (auto &l : hlist) cout <<"UserId's for Hobbies search : " << l <<endl;
 
-	s->deleteUser(newUser);
+	s->deleteUser("vijay");
 	s->printAllUsers();
 
-	s->deleteUser(newUser1);
+	s->deleteUser("prakash");
 	s->printAllUsers();
 
 	delete(s);
