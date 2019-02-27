@@ -81,7 +81,7 @@ void socialNetwork::printAllUsers() {
 	}		
 }
 
-set<unsigned long>socialNetwork::serchUserByName(string name) {
+set<unsigned long>socialNetwork::searchUserByName(string name) {
 	set<unsigned long> ids;
 	for (auto &l : uList) {
 		if (l->getUserName() == name) { ids.insert(l->getUserId());}
@@ -90,14 +90,14 @@ set<unsigned long>socialNetwork::serchUserByName(string name) {
 
 }
 
-set<unsigned long>socialNetwork::serchUserByAge(unsigned int age) {
+set<unsigned long>socialNetwork::searchUserByAge(unsigned int age) {
 	set<unsigned long> ids;
 	for (auto &l : uList) {
 		if (l->getUserAge() == age) { ids.insert(l->getUserId());}
 	}
 	return ids;
 }
-set<unsigned long>socialNetwork::serchUserByHobbies(set<string> hobbies) {
+set<unsigned long>socialNetwork::searchUserByHobbies(set<string> hobbies) {
 	set<unsigned long> ids;
 	for (auto &l : uList) {
 		for(auto &h : l->getUserHobbies()) {

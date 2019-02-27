@@ -10,9 +10,9 @@ public:
 	void addUser(string name);
 	void deleteUser(string name);
 	user* getUser(string name);
-	set<unsigned long>serchUserByName(string name);
-	set<unsigned long>serchUserByAge(unsigned int age);
-	set<unsigned long>serchUserByHobbies(set<string> hobbies);
+	set<unsigned long>searchUserByName(string name);
+	set<unsigned long>searchUserByAge(unsigned int age);
+	set<unsigned long>searchUserByHobbies(set<string> hobbies);
 	set<unsigned long>getFriendsOfUser(user *fuser);
 	void addFriend(user *ouser, user *fuser);
 	void printAllUsers();
