@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 using namespace std;
 
 #include "socialNetwork.h"
@@ -7,9 +8,8 @@ using namespace std;
 
 int main() {
 
-	socialNetwork *s = new socialNetwork;
+	auto s = make_unique<socialNetwork>();
 
-	
 	s->addUser("vijay");
 	s->addUser("prakash");
 
@@ -29,8 +29,6 @@ int main() {
 
 	s->deleteUser("prakash");
 	s->printAllUsers();
-
-	delete(s);
 	
 return 0;
 }

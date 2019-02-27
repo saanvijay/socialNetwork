@@ -1,5 +1,8 @@
 #include "socialNetwork.h"
 #include <algorithm> // std::remove will not work unless you declare algorithm header
+#include <memory>
+#include <iostream>
+using namespace std;
 
 user* socialNetwork::getUser(string name) {
 	for (auto &l : uList) {
@@ -98,8 +101,9 @@ set<unsigned long>socialNetwork::serchUserByHobbies(set<string> hobbies) {
 	set<unsigned long> ids;
 	for (auto &l : uList) {
 		for(auto &h : l->getUserHobbies()) {
-			for (auto &hv :hobbies)
+			for (auto &hv :hobbies) {
 				if (hv == h) ids.insert(l->getUserId());
+			}
 		}
 	}
 return ids;
