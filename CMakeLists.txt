@@ -8,4 +8,4 @@ set (CMAKE_CXX_FLAGS "-std=c++17")
 
 
 
-add_executable(socialNetwork *.cpp)
+add_executable(socialNetwork socialNetwork.cpp,main.cpp)
