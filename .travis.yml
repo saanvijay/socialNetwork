@@ -1,6 +1,3 @@
-language : 
-	c++
-platform:
-	- linux
-script : 
-	cmake .
+language : cpp
+platform: linux
+script : cmake . && make
