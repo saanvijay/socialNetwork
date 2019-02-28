@@ -3,4 +3,4 @@ language :
 platform:
 	- linux
 script : 
-	make
+	cmake .
