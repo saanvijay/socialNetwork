@@ -7,6 +7,10 @@ class socialNetwork {
 public:
 	socialNetwork() { }
 	~socialNetwork() { }
+	socialNetwork(const socialNetwork &) = delete;
+	socialNetwork& operator=(const socialNetwork &) = delete;
+	socialNetwork(socialNetwork &&) = delete;
+	socialNetwork& operator=(socialNetwork &&) = delete;
 	void addUser(string name);
 	void deleteUser(string name);
 	user* getUser(string name);
