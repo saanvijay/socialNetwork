@@ -10,6 +10,12 @@ user* socialNetwork::getUser(string name) {
 	}
 }
 
+user* socialNetwork::getUser(unsigned long id) {
+	for (auto &l : uList) {
+		if (l->getUserId() == id) return l;
+	}
+}
+
 void socialNetwork::addUser(string name) {
 
 	if (name == "") {
@@ -110,9 +116,26 @@ return ids;
 }
 
 set <unsigned long>socialNetwork::getFriendsOfUser(user *fuser)	 {
-	return fuser->getFriendsList();
+	return fuser->getFriendsListId();
 	}
 
-void socialNetwork::addFriend(user *ouser, user *fuser) {	
-	ouser->getFriendsList().insert(fuser->getUserId());
+set <user*>socialNetwork::getFriendsOfUser(set <unsigned long> fUser)	 {
+	set <user*> uList;
+	for (auto &userid : fUser) {
+		uList.insert(getUser(userid));
+	}
+	return uList;
 }
+
+void socialNetwork::addFriend(user *ouser, user *fuser) {	
+	ouser->getFriendsListId().insert(fuser->getUserId());
+}
+
+void socialNetwork::notify(user* sUser) {
+		auto userIdList = sUser->getFriendsListId();
+		auto userList = getFriendsOfUser(userIdList);
+		for (auto &singleUserId : userIdList) {
+			auto eachFriend = getUser(singleUserId);
+			eachFriend->setFriendsFeed(sUser->getUserFeed());
+		}
+	}

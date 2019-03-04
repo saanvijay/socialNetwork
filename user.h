@@ -50,7 +50,7 @@ public:
 	user& operator=(user &&) = delete;
 
 	void setUserName(string aname) { _name = aname;}
-
+	void setFriendsFeed(string feed) { _myFriendsFeed = feed; }
 	void setUserFeed(string feed) { _myFeed = feed;}
 	void setUserGender(string agender) { _gender = agender;}
 	void setUserAge (auto nage) { _age = nage; }
@@ -64,10 +64,5 @@ public:
 	auto getUserHeight() { return _height; }
 	auto getUserHobbies() { return _hobbies; }
 	decltype(_userId) getUserId() { return _userId; }
-	set<decltype(_userId)> getFriendsList() { return _fList; }
-	void notify(string feed) {
-		for (auto &eachFriend : _fList) {
-			eachFriend->myFriendsFeed = feed;
-		}
-	}
+	set<decltype(_userId)> getFriendsListId() { return _fList; }
 };
