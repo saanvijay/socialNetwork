@@ -77,6 +77,9 @@ void socialNetwork::printAllUsers() {
 		cout << "Gender   : " << l->getUserGender()  << endl;
 		cout << "Age      : " << l->getUserAge() << endl;
 		cout << "Height   : " << l->getUserHeight() << endl;
+		cout << "myFeed   : " << l->getUserFeed() << endl;
+		cout << "FFeed    : " << l->getFriendsFeed() << endl;
+		
 		auto uh = l->getUserHobbies();
 		if (!uh.empty()) cout << "Hobbies  : ";
 		for (auto &h : uh){

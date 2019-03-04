@@ -24,6 +24,8 @@ int main() {
 	auto hlist = s->searchUserByHobbies({"swimming"});
 	for (auto &l : hlist) cout <<"UserId's for Hobbies search : " << l <<endl;
 
+	s->addFriend(s->getUser("vijay"), s->getUser("prakash"));
+
 	auto u = s->getUser("vijay");
 	u->setUserFeed("This is for testing user feed");
 	s->notify(u);

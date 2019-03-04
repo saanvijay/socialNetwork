@@ -58,6 +58,7 @@ public:
 	void setUserHobbies(vector<string> &uhobbies) { _hobbies = uhobbies ; }
 	
 	string getUserFeed() { return _myFeed;}
+	string getFriendsFeed() { return _myFriendsFeed; }
 	string getUserName() { return _name;}
 	string getUserGender() { return _gender;}
 	auto getUserAge () { return _age; }
