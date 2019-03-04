@@ -13,6 +13,9 @@ class user {
 	string _gender;
 	vector<string> _hobbies;
 	set<decltype(_userId)> _fList;
+	string _myFeed;
+	string _myFriendsFeed;
+
 public:
 	user() { 
 		auto id = [] () { static unsigned long i=0; i++; return i;};
@@ -26,6 +29,8 @@ public:
 		_height = rhs._height;
 		_hobbies = rhs._hobbies;
 		_fList = rhs._fList;
+		_myFeed = rhs._myFeed;
+		_myFriendsFeed = rhs._myFriendsFeed;
 	}
 	user& operator =(const user& rhs) {
 		if (this != &rhs) {
@@ -36,6 +41,8 @@ public:
 			_height = rhs._height;
 			_hobbies = rhs._hobbies;
 			_fList = rhs._fList;
+			_myFeed = rhs._myFeed;
+			_myFriendsFeed = rhs._myFriendsFeed;
 		}
 		return *this;
 	}
@@ -43,11 +50,14 @@ public:
 	user& operator=(user &&) = delete;
 
 	void setUserName(string aname) { _name = aname;}
+
+	void setUserFeed(string feed) { _myFeed = feed;}
 	void setUserGender(string agender) { _gender = agender;}
 	void setUserAge (auto nage) { _age = nage; }
 	void setUserHeight(auto nheight) { _height = nheight; }
 	void setUserHobbies(vector<string> &uhobbies) { _hobbies = uhobbies ; }
-
+	
+	string getUserFeed() { return _myFeed;}
 	string getUserName() { return _name;}
 	string getUserGender() { return _gender;}
 	auto getUserAge () { return _age; }
@@ -55,4 +65,9 @@ public:
 	auto getUserHobbies() { return _hobbies; }
 	decltype(_userId) getUserId() { return _userId; }
 	set<decltype(_userId)> getFriendsList() { return _fList; }
+	void notify(string feed) {
+		for (auto &eachFriend : _fList) {
+			eachFriend->myFriendsFeed = feed;
+		}
+	}
 };
