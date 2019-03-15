@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-user* socialNetwork::getUser(string name) {
+shared_ptr<user> socialNetwork::getUser(string name) {
 	for (auto &l : uList) {
 		if (l->getUserName() == name) return l;
 	}
@@ -23,12 +23,12 @@ void socialNetwork::addUser(string name) {
 		return;
 	}
 
-	user *auser = new user;
+	auto auser = make_shared<user>();
 	auser->setUserName(name);
 
 	string gender;
 	cout << "Enter Gender for " << name << endl;
-	cin >> gender;
+	getline(cin, gender);
 	auser->setUserGender (gender);
 
 	int age;
@@ -43,15 +43,22 @@ void socialNetwork::addUser(string name) {
 
 	vector<string> nhobbies;
 	
+	string h;
 	while(1) {
-		string h;
-		char c;
+		static int i=0;
+		h="";
+
+		if(i) cin.get();
 		cout << "Enter hobbies for " << name << endl;
-		cin >> h;
+		getline(cin,h);
 		nhobbies.push_back(h);
+		i++;
+
 		cout << "More hobbies for " << name <<" (y/n)" << endl;
+		char c;
 		cin >> c;
-		if (c == 'n' || c == 'N') break;
+		if (c == 'y' || c == 'Y') continue;
+		else break;
 	}
 	auser->setUserHobbies(nhobbies);
 	uList.push_back(auser);
@@ -118,6 +125,10 @@ set<unsigned long>socialNetwork::searchUserByHobbies(set<string> hobbies) {
 return ids;
 }
 
+<<<<<<< HEAD
+set <unsigned long>socialNetwork::getFriendsOfUser(shared_ptr<user> fuser)	 {
+	return fuser->getFriendsList();
+=======
 set <unsigned long>socialNetwork::getFriendsOfUser(user *fuser)	 {
 	return fuser->getFriendsListId();
 	}
@@ -126,10 +137,16 @@ set <user*>socialNetwork::getFriendsOfUser(set <unsigned long> fUser)	 {
 	set <user*> uList;
 	for (auto &userid : fUser) {
 		uList.insert(getUser(userid));
+>>>>>>> 88ac488b2a980bcd2e7fa7a851cee7e31278af1b
 	}
 	return uList;
 }
 
+<<<<<<< HEAD
+void socialNetwork::addFriend(shared_ptr<user> ouser, shared_ptr<user> fuser) {	
+	ouser->getFriendsList().insert(fuser->getUserId());
+}
+=======
 void socialNetwork::addFriend(user *ouser, user *fuser) {	
 	ouser->getFriendsListId().insert(fuser->getUserId());
 }
@@ -142,3 +159,4 @@ void socialNetwork::notify(user* sUser) {
 			eachFriend->setFriendsFeed(sUser->getUserFeed());
 		}
 	}
+>>>>>>> 88ac488b2a980bcd2e7fa7a851cee7e31278af1b

@@ -3,6 +3,7 @@
 #include <string>
 #include <set>
 #include <vector>
+#include <memory>
 using namespace std;
 
 class user {
