@@ -14,6 +14,7 @@ class user {
 	string _gender;
 	vector<string> _hobbies;
 	set<decltype(_userId)> _fList;
+	set<shared_ptr<user>> _fLists;
 	string _myFeed;
 	string _myFriendsFeed;
 
@@ -67,4 +68,5 @@ public:
 	auto getUserHobbies() { return _hobbies; }
 	decltype(_userId) getUserId() { return _userId; }
 	set<decltype(_userId)> getFriendsListId() { return _fList; }
+	auto getFriendsList() { return _fLists; }
 };

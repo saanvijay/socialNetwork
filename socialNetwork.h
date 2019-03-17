@@ -19,7 +19,7 @@ public:
 	set<unsigned long>searchUserByName(string name);
 	set<unsigned long>searchUserByAge(unsigned int age);
 	set<unsigned long>searchUserByHobbies(set<string> hobbies);
-	set<unsigned long>getFriendsOfUser(shared_ptr<user> fuser);
+	set<shared_ptr<user>>getFriendsOfUser(shared_ptr<user> fuser);
 	void addFriend(shared_ptr<user> ouser, shared_ptr<user> fuser);
 
 	void printAllUsers();
