@@ -23,5 +23,5 @@ public:
 	void addFriend(shared_ptr<user> ouser, shared_ptr<user> fuser);
 
 	void printAllUsers();
-	void notify(user*);
+	void notify(shared_ptr<user>);
 };
