@@ -18,6 +18,8 @@ shared_ptr<user> socialNetwork::getUser(unsigned long id) {
 
 void socialNetwork::addUser(string name) {
 
+	static int i=0;
+	if (i) cin.get();
 	if (name == "") {
 		cout << "Application can't create user profile for empty string" << endl;
 		return;
@@ -29,26 +31,23 @@ void socialNetwork::addUser(string name) {
 	string gender;
 	cout << "Enter Gender for " << name << endl;
 	getline(cin, gender);
-	auser->setUserGender (gender);
 
 	int age;
 	cout << "Enter age for " << name << endl;
 	cin >> age;
-	auser->setUserAge (age);
 
 	int nheight;
 	cout << "Enter height for " << name << endl;
 	cin >> nheight;
-	auser->setUserHeight(nheight);
 
 	vector<string> nhobbies;
 	
-	string h;
 	while(1) {
 		static int i=0;
-		h="";
+		string h="";
 
-		if(i) cin.get();
+		cin.get();
+
 		cout << "Enter hobbies for " << name << endl;
 		getline(cin,h);
 		nhobbies.push_back(h);
@@ -60,8 +59,12 @@ void socialNetwork::addUser(string name) {
 		if (c == 'y' || c == 'Y') continue;
 		else break;
 	}
+	auser->setUserGender (gender);
+	auser->setUserAge (age);
+	auser->setUserHeight(nheight);
 	auser->setUserHobbies(nhobbies);
 	uList.push_back(auser);
+	i++;
 }
 
 
