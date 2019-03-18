@@ -17,9 +17,9 @@ shared_ptr<user> socialNetwork::getUser(unsigned long id) {
 }
 
 void socialNetwork::addUser(string name) {
-
 	static int i=0;
-	if (i) cin.get();
+	if(i) cin.get();
+
 	if (name == "") {
 		cout << "Application can't create user profile for empty string" << endl;
 		return;
@@ -35,6 +35,13 @@ void socialNetwork::addUser(string name) {
 	int age;
 	cout << "Enter age for " << name << endl;
 	cin >> age;
+
+
+	cin.get();
+
+	string feed;
+	cout << "Enter feed for " << name << endl;
+	getline(cin, feed);
 
 	int nheight;
 	cout << "Enter height for " << name << endl;
@@ -63,6 +70,8 @@ void socialNetwork::addUser(string name) {
 	auser->setUserAge (age);
 	auser->setUserHeight(nheight);
 	auser->setUserHobbies(nhobbies);
+	auser->setUserFeed(feed);
+	notify(auser);
 	uList.push_back(auser);
 	i++;
 }
