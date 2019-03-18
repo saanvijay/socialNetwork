@@ -130,7 +130,7 @@ set <unsigned long>socialNetwork::getFriendsOfUser(shared_ptr<user> fuser)	 {
 	return fuser->getFriendsList();
 }
 
-set shared_ptr<user>>socialNetwork::getFriendsOfUser(set <unsigned long> fUser)	 {
+set<shared_ptr<user>>socialNetwork::getFriendsOfUser(set <unsigned long> fUser)	 {
 	set <shared_ptr<user>> uList;
 	for (auto &userid : fUser) {
 		uList.insert(getUser(userid));
