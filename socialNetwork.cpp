@@ -10,7 +10,7 @@ shared_ptr<user> socialNetwork::getUser(string name) {
 	}
 }
 
-user* socialNetwork::getUser(unsigned long id) {
+shared_ptr<user> socialNetwork::getUser(unsigned long id) {
 	for (auto &l : uList) {
 		if (l->getUserId() == id) return l;
 	}
@@ -125,38 +125,29 @@ set<unsigned long>socialNetwork::searchUserByHobbies(set<string> hobbies) {
 return ids;
 }
 
-<<<<<<< HEAD
+
 set <unsigned long>socialNetwork::getFriendsOfUser(shared_ptr<user> fuser)	 {
 	return fuser->getFriendsList();
-=======
-set <unsigned long>socialNetwork::getFriendsOfUser(user *fuser)	 {
-	return fuser->getFriendsListId();
-	}
+}
 
-set <user*>socialNetwork::getFriendsOfUser(set <unsigned long> fUser)	 {
-	set <user*> uList;
+set shared_ptr<user>>socialNetwork::getFriendsOfUser(set <unsigned long> fUser)	 {
+	set <shared_ptr<user>> uList;
 	for (auto &userid : fUser) {
 		uList.insert(getUser(userid));
->>>>>>> 88ac488b2a980bcd2e7fa7a851cee7e31278af1b
 	}
 	return uList;
 }
 
-<<<<<<< HEAD
 void socialNetwork::addFriend(shared_ptr<user> ouser, shared_ptr<user> fuser) {	
 	ouser->getFriendsList().insert(fuser->getUserId());
 }
-=======
-void socialNetwork::addFriend(user *ouser, user *fuser) {	
-	ouser->getFriendsListId().insert(fuser->getUserId());
-}
 
-void socialNetwork::notify(user* sUser) {
+
+void socialNetwork::notify(shared_ptr<user> sUser) {
 		auto userIdList = sUser->getFriendsListId();
 		auto userList = getFriendsOfUser(userIdList);
 		for (auto &singleUserId : userIdList) {
 			auto eachFriend = getUser(singleUserId);
 			eachFriend->setFriendsFeed(sUser->getUserFeed());
 		}
-	}
->>>>>>> 88ac488b2a980bcd2e7fa7a851cee7e31278af1b
+}
