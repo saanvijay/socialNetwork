@@ -5,14 +5,14 @@
 using namespace std;
 
 shared_ptr<user> socialNetwork::getUser(string name) {
-	for (auto &l : uList) {
-		if (l->getUserName() == name) return l;
+	for (auto &usr : uList) {
+		if (usr->getUserName() == name) return usr;
 	}
 }
 
 shared_ptr<user> socialNetwork::getUser(unsigned long id) {
-	for (auto &l : uList) {
-		if (l->getUserId() == id) return l;
+	for (auto &usr : uList) {
+		if (usr->getUserId() == id) return usr;
 	}
 }
 
@@ -90,16 +90,16 @@ void socialNetwork::printAllUsers() {
 
 	cout << endl << "User Details" << endl;
 	cout << "-------------------------------" << endl;
-	for (auto &l : uList) {
-		cout << "UserId   : " << l->getUserId()  << endl;
-		cout << "Name     : " << l->getUserName()  << endl;
-		cout << "Gender   : " << l->getUserGender()  << endl;
-		cout << "Age      : " << l->getUserAge() << endl;
-		cout << "Height   : " << l->getUserHeight() << endl;
-		cout << "myFeed   : " << l->getUserFeed() << endl;
-		cout << "FFeed    : " << l->getFriendsFeed() << endl;
+	for (auto &usr : uList) {
+		cout << "UserId   : " << usr->getUserId()  << endl;
+		cout << "Name     : " << usr->getUserName()  << endl;
+		cout << "Gender   : " << usr->getUserGender()  << endl;
+		cout << "Age      : " << usr->getUserAge() << endl;
+		cout << "Height   : " << usr->getUserHeight() << endl;
+		cout << "myFeed   : " << usr->getUserFeed() << endl;
+		cout << "FFeed    : " << usr->getFriendsFeed() << endl;
 		
-		auto uh = l->getUserHobbies();
+		auto uh = usr->getUserHobbies();
 		if (!uh.empty()) cout << "Hobbies  : ";
 		for (auto &h : uh){
 			cout << h <<" " ;
@@ -111,8 +111,8 @@ void socialNetwork::printAllUsers() {
 
 set<unsigned long>socialNetwork::searchUserByName(string name) {
 	set<unsigned long> ids;
-	for (auto &l : uList) {
-		if (l->getUserName() == name) { ids.insert(l->getUserId());}
+	for (auto &usr : uList) {
+		if (usr->getUserName() == name) { ids.insert(usr->getUserId());}
 	}
 	return ids;
 
@@ -120,17 +120,17 @@ set<unsigned long>socialNetwork::searchUserByName(string name) {
 
 set<unsigned long>socialNetwork::searchUserByAge(unsigned int age) {
 	set<unsigned long> ids;
-	for (auto &l : uList) {
-		if (l->getUserAge() == age) { ids.insert(l->getUserId());}
+	for (auto &usr : uList) {
+		if (usr->getUserAge() == age) { ids.insert(usr->getUserId());}
 	}
 	return ids;
 }
 set<unsigned long>socialNetwork::searchUserByHobbies(set<string> hobbies) {
 	set<unsigned long> ids;
-	for (auto &l : uList) {
-		for(auto &h : l->getUserHobbies()) {
+	for (auto &usr : uList) {
+		for(auto &h : usr->getUserHobbies()) {
 			for (auto &hv :hobbies) {
-				if (hv == h) ids.insert(l->getUserId());
+				if (hv == h) ids.insert(usr->getUserId());
 			}
 		}
 	}
